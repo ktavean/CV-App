@@ -1,0 +1,14 @@
+.App {
+    display: flex;
+    padding: 1em;
+    justify-content: space-between;
+}
+
+#inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp {
+    display: flex;
+    flex-direction: column;
+}
+
+#container div {
+    margin-bottom: 1em;
+}
