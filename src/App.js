@@ -31,15 +31,12 @@ class App extends Component {
               end: ""
             }
           ],
-        extraInfo: [
-          {
+        extraInfo: {
             skills: [],
             languages: []
           }
-        ]
       }
-    };
-
+    }
   }
 
   handleChange = (input) => {
@@ -198,6 +195,38 @@ class App extends Component {
           }
         );
         break;
+      case "skills":
+        this.setState(
+          { cv_data: {...this.state.cv_data,
+              extraInfo: {...this.state.cv_data.extraInfo,
+                skills: [input.target.value],
+              }
+            }
+          }
+        );
+        break;
+      case "languages":
+        this.setState(
+          { cv_data: {...this.state.cv_data,
+              extraInfo: {...this.state.cv_data.extraInfo,
+                languages: [input.target.value],
+              }
+            }
+          }
+        );
+        break;
+      default: 
+        break;
+    }
+  }
+
+  addInputs = (type) => {
+    switch(type.target.id) {
+      case "addEdu":
+        
+        break;
+      default:
+        break;
     }
   }
 
@@ -231,6 +260,7 @@ class App extends Component {
             <input type="date" id="startDate" name="startDate" onChange={e => this.handleChange(e)} />
             <label htmlFor="graduationDate">Graduation date: </label>
             <input type="date" id="graduationDate" name="graduationDate" onChange={e => this.handleChange(e)} />
+            <button type="button" id="addEdu" onClick={e => this.addInputs(e)}>Add education</button>
           </div>
           <div id="experienceInp">
             <h3>Work experience</h3>
@@ -242,25 +272,20 @@ class App extends Component {
             <input type="date" id="workStart" name="workStart" onChange={e => this.handleChange(e)} />
             <label htmlFor="workEnd">End date: </label>
             <input type="date" id="workEnd" name="workEnd" onChange={e => this.handleChange(e)} />
+            <button type="button" id="addExp" onClick={e => this.addInputs(e)}>Add experience</button>
           </div>
           <div id="extraInfoInp">
             <div id="skillsInp">
               <h3>Skills</h3>
-              <input type="text" name="skill1" />
-              <input type="text" name="skill2" />
-              <input type="text" name="skill3" />
-              <button type="button" id="addSkill">Add a skill</button>
+              <input type="text" name="skills" onChange={e => this.handleChange(e)} />
             </div>
             <div id="languagesInp">
               <h3>Languages</h3>
-              <input type="text" name="language1" />
-              <input type="text" name="language2" />
-              <input type="text" name="language3" />
-              <button type="button" id="addLanguage">Add a language</button>
+              <input type="text" name="languages" onChange={e => this.handleChange(e)} />
             </div>
           </div>
         </div>
-        <CV data={cv_data}/>
+        <CV data={cv_data} />
       </div>
     );
   }
