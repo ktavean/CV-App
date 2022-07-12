@@ -1,34 +1,31 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 
 class CV extends Component {
 
     render() {
 
         const { data } = this.props;
-        const eduInstitutions = [];
-        const workInstitutions = [];
-        for (let i = 0; i < data.education.counter; i++) {
-            eduInstitutions.push(
-                [   <div key={i-1} id={`edu${i}`}>
-                        <p key={i}>{data.education.institutions[i].name}</p>
-                        <p key={i+1}>{data.education.institutions[i].start}</p>
-                        <p key={i+2}>{data.education.institutions[i].end}</p>
-                    </div>
-                ]
+        console.log(data);
+        const eduInstitutions = data.education.institutions.map((item, i) => {
+            return(
+                <div key={item.id} id={`edu${i}`}>
+                    <p key={item.id+1}>{item.name}</p>
+                    <p key={item.id+2}>{item.start}</p>
+                    <p key={item.id+3}>{item.end}</p>
+                </div>
             )
-        }
-
-        for (let i = 0; i < data.experience.counter; i++) {
-            workInstitutions.push(
-                [   <div key={i-1} id={`exp${i}`}>
-                        <p key={i}>{data.experience.institutions[i].name}</p>
-                        <p key={i+1}>{data.experience.institutions[i].position}</p>
-                        <p key={i+2}>{data.experience.institutions[i].start}</p>
-                        <p key={i+3}>{data.experience.institutions[i].end}</p>
-                    </div>
-                ]
+        });
+        const workInstitutions = data.experience.institutions.map((item, i) => {
+            return(
+                <div key={item.id} id={`exp${i}`}>
+                    <p key={item.id+1}>{item.name}</p>
+                    <p key={item.id+2}>{item.position}</p>
+                    <p key={item.id+3}>{item.start}</p>
+                    <p key={item.id+4}>{item.end}</p>
+                </div>
             )
-        }
+        });
 
         return (
             <div id="container">

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 
 class Inputs extends Component {
     
@@ -6,8 +7,38 @@ class Inputs extends Component {
 
         const handleChange = this.props.handleChange;
         const addInputs = this.props.addInputs;
-        const eduInputs = this.props.eduInputs;
-        const jobInputs = this.props.jobInputs;
+        const removeInputs = this.props.removeInputs;
+        const eduInp = this.props.eduInputs;
+        const jobInp = this.props.jobInputs;
+
+        const eduInputs = eduInp.map((item, i) => {
+            return(
+            <div key={item.id} className="edu">
+                <label key={item.id+1} htmlFor="eduName">Institution's name: </label>
+                <input key={item.id+2} id={`eduName${i}`} name="eduName" onChange={e => handleChange(e)} />
+                <label key={item.id+3} htmlFor="startDate">Start date: </label>
+                <input key={item.id+4} type="date" id={`startDate${i}`} name="startDate" onChange={e => handleChange(e)} />
+                <label key={item.id+5} htmlFor="graduationDate">Graduation date: </label>
+                <input key={item.id+6} type="date" id={`graduationDate${i}`} name="graduationDate" onChange={e => handleChange(e)} />
+                <button key={item.id+7} type="button" id={`delEdu${i}`} onClick={e => removeInputs(e)}>Remove education</button>
+            </div>
+            );
+          });
+          const jobInputs = jobInp.map((item, i) => {
+            return(
+            <div key={item.id} className="exp">  
+                <label key={item.id+1} htmlFor="expName">Company's name: </label>
+                <input key={item.id+2} id={`expName${i}`} name="expName" onChange={e => handleChange(e)} />
+                <label key={item.id+3} htmlFor="posOccupied">Position occupied: </label>
+                <input key={item.id+4} id={`posOccupied${i}`} name="posOccupied" onChange={e => handleChange(e)} />
+                <label key={item.id+5} htmlFor="workStart">Start date: </label>
+                <input key={item.id+6} type="date" id={`workStart${i}`} name="workStart" onChange={e => handleChange(e)} />
+                <label key={item.id+7} htmlFor="workEnd">End date: </label>
+                <input key={item.id+8} type="date" id={`workEnd${i}`} name="workEnd" onChange={e => handleChange(e)} />
+                <button key={item.id+9} type="button" id={`delWork${i}`} onClick={e => removeInputs(e)}>Remove experience</button>
+            </div>
+            );
+          });
 
         return (
             <div id="inputs">

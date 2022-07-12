@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-#inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp {
+#inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp, .exp, .edu {
     display: flex;
     flex-direction: column;
 }
