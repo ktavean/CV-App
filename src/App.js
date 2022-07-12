@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CV from "./Components/CV/CV";
+import Inputs from "./Components/Inputs";
 import "./App.css";
 
 class App extends Component {
@@ -16,31 +17,39 @@ class App extends Component {
           phone: "",
           description: ""
         },
-        education: [
+        education: {
+          counter: 1,
+          institutions: [
             {
               name: "",
               start: "",
               end: ""
             }
-          ],
-        experience: [
+          ]
+        },
+        experience: {
+          counter: 1,
+          institutions: [
             {
               name: "",
               position: "",
               start: "",
               end: ""
             }
-          ],
+          ]
+        },
         extraInfo: {
             skills: [],
             languages: []
           }
       }
-    }
-  }
+    };
+  };
 
   handleChange = (input) => {
-    switch(input.target.name) {
+
+    // the other state changes
+    switch(input.target.id) {
       case "name":
         this.setState(
           { 
@@ -102,99 +111,6 @@ class App extends Component {
           }
         );
         break;
-      case "eduName":
-        console.log(...this.state.cv_data.education)
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              education: [
-                {
-                  ...this.state.cv_data.education[0],
-                  name: input.target.value,
-                }
-              ]
-            }
-          }
-        );
-        break;
-      case "startDate":
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              education: [
-                {
-                  ...this.state.cv_data.education[0],
-                  start: input.target.value
-                }
-              ]
-            }
-          }
-        );
-        break;
-      case "graduationDate":
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              education: [
-                {
-                  ...this.state.cv_data.education[0],
-                  end: input.target.value
-                }
-              ]
-            }
-          }
-        );
-        break;
-      case "expName":
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              experience: [
-                {
-                  ...this.state.cv_data.experience[0],
-                  name: input.target.value
-                }
-              ]
-            }
-          }
-        );
-        break;
-      case "posOccupied":
-        this.setState( 
-          { cv_data: {...this.state.cv_data,
-              experience: [
-              {
-                ...this.state.cv_data.experience[0],
-                position: input.target.value
-              }
-              ]
-            }
-          }
-        );
-        break;
-      case "workStart":
-        console.log(this.state.cv_data.experience)
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              experience: [
-                {
-                  ...this.state.cv_data.experience[0],
-                  start: input.target.value
-                }
-              ]
-            }
-          }
-        );
-        break;
-      case "workEnd":
-        this.setState(
-          { cv_data: {...this.state.cv_data, 
-              experience: [
-                {
-                  ...this.state.cv_data.experience[0],
-                  end: input.target.value
-                }
-              ]
-            }
-          }
-        );
-        break;
       case "skills":
         this.setState(
           { cv_data: {...this.state.cv_data,
@@ -218,12 +134,139 @@ class App extends Component {
       default: 
         break;
     }
+    // education & work experience state change
+    const newEduState = this.state.cv_data.education.institutions.slice();
+    const newExpState = this.state.cv_data.experience.institutions.slice();
+    const id = input.target.id;
+    const i = id.slice(id.length-1);
+    const value = input.target.value;
+
+    if (id.includes("eduName")) {
+      newEduState[i].name = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            education: {
+              ...this.state.cv_data.education,
+              institutions: newEduState
+            }
+          }
+        }
+      )
+    } else if (id.includes("startDate")) {
+      newEduState[i].start = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            education: {
+              ...this.state.cv_data.education,
+              institutions: newEduState
+            }
+          }
+        }
+      )
+    } else if (id.includes("graduationDate")) {
+      newEduState[i].end = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            education: {
+              ...this.state.cv_data.education,
+              institutions: newEduState
+            }
+          }
+        }
+      )
+    } else if (id.includes("expName")) {
+      newExpState[i].name = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            experience: {
+              ...this.state.cv_data.experience,
+              institutions: newExpState
+            }
+          }
+        }
+      )
+    } else if (id.includes("posOccupied")) {
+      newExpState[i].position = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            experience: {
+              ...this.state.cv_data.experience,
+              institutions: newExpState
+            }
+          }
+        }
+      )
+    } else if (id.includes("workStart")) {
+      newExpState[i].start = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            experience: {
+              ...this.state.cv_data.experience,
+              institutions: newExpState
+            }
+          }
+        }
+      )
+    } else if (id.includes("workEnd")) {
+      newExpState[i].end = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            experience: {
+              ...this.state.cv_data.experience,
+              institutions: newExpState
+            }
+          }
+        }
+      )
+    }
   }
 
   addInputs = (type) => {
     switch(type.target.id) {
       case "addEdu":
-        
+        this.setState(
+          { cv_data: {...this.state.cv_data, 
+              education: {
+                counter: this.state.cv_data.education.counter + 1,
+                institutions: this.state.cv_data.education.institutions.concat(
+                  [
+                    {
+                      name: "",
+                      start: "",
+                      end: ""
+                    }
+                ])
+              }
+            }
+          }
+        );
+        break;
+      case "addExp":
+        this.setState(
+          { cv_data: {...this.state.cv_data, 
+              experience: {
+                counter: this.state.cv_data.experience.counter + 1,
+                institutions: this.state.cv_data.experience.institutions.concat(
+                  [
+                    {
+                      name: "",
+                      position: "",
+                      start: "",
+                      end: ""
+                    }
+                  ]
+                )
+              }
+            }
+          }
+        );
         break;
       default:
         break;
@@ -233,58 +276,38 @@ class App extends Component {
   render() {
 
     const { cv_data } = this.state;
+    const eduInputs = [];
+    const jobInputs = [];
+    for (let i = 0; i < cv_data.education.counter; i++) {
+      eduInputs.push(
+        [
+          <label key={i} htmlFor="eduName">Institution's name: </label>,
+          <input key={i+1} id={`eduName${i}`} name="eduName" onChange={e => this.handleChange(e)} />,
+          <label key={i+2} htmlFor="startDate">Start date: </label>,
+          <input key={i+3} type="date" id={`startDate${i}`} name="startDate" onChange={e => this.handleChange(e)} />,
+          <label key={i+4} htmlFor="graduationDate">Graduation date: </label>,
+          <input key={i+5} type="date" id={`graduationDate${i}`} name="graduationDate" onChange={e => this.handleChange(e)} />
+        ]
+      );
+    }
+    for (let i = 0; i < cv_data.experience.counter; i++) {
+      jobInputs.push(
+        [
+          <label key={i} htmlFor="expName">Company's name: </label>,
+          <input key={i+1} id={`expName${i}`} name="expName" onChange={e => this.handleChange(e)} />,
+          <label key={i+2} htmlFor="posOccupied">Position occupied: </label>,
+          <input key={i+3} id={`posOccupied${i}`} name="posOccupied" onChange={e => this.handleChange(e)} />,
+          <label key={i+4} htmlFor="workStart">Start date: </label>,
+          <input key={i+5} type="date" id={`workStart${i}`} name="workStart" onChange={e => this.handleChange(e)} />,
+          <label key={i+6} htmlFor="workEnd">End date: </label>,
+          <input key={i+7} type="date" id={`workEnd${i}`} name="workEnd" onChange={e => this.handleChange(e)} />
+        ]
+      );
+  }
 
     return (
       <div className="App">
-        <div id="inputs">
-          <div id="aboutInp">
-            <h3>About you</h3>
-            <label htmlFor="name">Name: </label>
-            <input id="name" name="name" onChange={e => this.handleChange(e)} />
-            <label htmlFor="surname">Surname: </label>
-            <input id="surname" name="surname" onChange={e => this.handleChange(e)} />
-            <label htmlFor="name">Email: </label>
-            <input id="email" name="email" onChange={e => this.handleChange(e)} />
-            <label htmlFor="address">Address: </label>
-            <input id="address" name="address" onChange={e => this.handleChange(e)} />
-            <label htmlFor="phone">Phone number: </label>
-            <input id="phone" name="phone" onChange={e => this.handleChange(e)} />
-            <label htmlFor="description">About you: </label>
-            <textarea id="description" name="description" rows="10" cols="80" onChange={e => this.handleChange(e)}/>
-          </div>
-          <div id="educationInp">
-            <h3>Education</h3>
-            <label htmlFor="eduName">Institution's name: </label>
-            <input id="eduName" name="eduName" onChange={e => this.handleChange(e)} />
-            <label htmlFor="startDate">Start date: </label>
-            <input type="date" id="startDate" name="startDate" onChange={e => this.handleChange(e)} />
-            <label htmlFor="graduationDate">Graduation date: </label>
-            <input type="date" id="graduationDate" name="graduationDate" onChange={e => this.handleChange(e)} />
-            <button type="button" id="addEdu" onClick={e => this.addInputs(e)}>Add education</button>
-          </div>
-          <div id="experienceInp">
-            <h3>Work experience</h3>
-            <label htmlFor="expName">Company's name: </label>
-            <input id="expName" name="expName" onChange={e => this.handleChange(e)} />
-            <label htmlFor="posOccupied">Position occupied: </label>
-            <input id="posOccupied" name="posOccupied" onChange={e => this.handleChange(e)} />
-            <label htmlFor="workStart">Start date: </label>
-            <input type="date" id="workStart" name="workStart" onChange={e => this.handleChange(e)} />
-            <label htmlFor="workEnd">End date: </label>
-            <input type="date" id="workEnd" name="workEnd" onChange={e => this.handleChange(e)} />
-            <button type="button" id="addExp" onClick={e => this.addInputs(e)}>Add experience</button>
-          </div>
-          <div id="extraInfoInp">
-            <div id="skillsInp">
-              <h3>Skills</h3>
-              <input type="text" name="skills" onChange={e => this.handleChange(e)} />
-            </div>
-            <div id="languagesInp">
-              <h3>Languages</h3>
-              <input type="text" name="languages" onChange={e => this.handleChange(e)} />
-            </div>
-          </div>
-        </div>
+        <Inputs eduInputs={eduInputs} jobInputs={jobInputs} addInputs={this.addInputs} handleChange={this.handleChange} />
         <CV data={cv_data} />
       </div>
     );

@@ -5,6 +5,30 @@ class CV extends Component {
     render() {
 
         const { data } = this.props;
+        const eduInstitutions = [];
+        const workInstitutions = [];
+        for (let i = 0; i < data.education.counter; i++) {
+            eduInstitutions.push(
+                [   <div key={i-1} id={`edu${i}`}>
+                        <p key={i}>{data.education.institutions[i].name}</p>
+                        <p key={i+1}>{data.education.institutions[i].start}</p>
+                        <p key={i+2}>{data.education.institutions[i].end}</p>
+                    </div>
+                ]
+            )
+        }
+
+        for (let i = 0; i < data.experience.counter; i++) {
+            workInstitutions.push(
+                [   <div key={i-1} id={`exp${i}`}>
+                        <p key={i}>{data.experience.institutions[i].name}</p>
+                        <p key={i+1}>{data.experience.institutions[i].position}</p>
+                        <p key={i+2}>{data.experience.institutions[i].start}</p>
+                        <p key={i+3}>{data.experience.institutions[i].end}</p>
+                    </div>
+                ]
+            )
+        }
 
         return (
             <div id="container">
@@ -20,19 +44,10 @@ class CV extends Component {
                     <p>{data.about.description}</p>
                 </div>
                 <div id="education">
-                    <div id="edu0">
-                        <p>{data.education[0].name}</p>
-                        <p>{data.education[0].start}</p>
-                        <p>{data.education[0].end}</p>
-                    </div>
+                    {eduInstitutions}
                 </div>
                 <div id="experience">
-                    <div id="exp0">
-                        <p>{data.experience[0].name}</p>
-                        <p>{data.experience[0].position}</p>
-                        <p>{data.experience[0].start}</p>
-                        <p>{data.experience[0].end}</p>
-                    </div>
+                    {workInstitutions}
                 </div>
                 <div id="extraInfo">
                     <div id="skills">
