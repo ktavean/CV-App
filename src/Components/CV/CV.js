@@ -22,8 +22,7 @@ class CV extends Component {
                 <div key={item.id} id={`exp${i}`}>
                     <h3 key={item.id+1}>{item.name}</h3>
                     <p key={item.id+2}>{item.position}</p>
-                    <p key={item.id+3}>{item.start}</p>
-                    <p key={item.id+4}>{item.end}</p>
+                    <p key={item.id+3}>{item.start} - {item.end}</p>
                 </div>
             )
         });
@@ -62,7 +61,7 @@ class CV extends Component {
                         {eduInstitutions}
                     </div>
                     <div id="experience">
-                        <h2>Work experience</h2>
+                        <h2>Experience</h2>
                         {workInstitutions}
                     </div>
                 </div>

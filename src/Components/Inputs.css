@@ -1,5 +1,19 @@
+* {
+    --boxShadowUpBlack: 0px 1px rgba(0, 0, 0, 0.5);
+}
+
 fieldset {
-    padding: 1em;
+    padding: 1em 2em;
+}
+
+input, textarea {
+    width: 25em;
+}
+
+button {
+    width: 10em;
+    align-self: center;
+    margin-top: 0.2em;
 }
 
 textarea {
@@ -9,4 +23,8 @@ textarea {
 #inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp, .exp, .edu {
     display: flex;
     flex-direction: column;
+}
+
+#aboutInp, #educationInp, #experienceInp, #extraInfoInp {
+    margin-bottom: 0.3em;
 }

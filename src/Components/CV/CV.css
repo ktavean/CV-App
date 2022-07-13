@@ -1,11 +1,13 @@
 * {
     --boxShadowRight: 1px 0px rgba(0, 0, 0, 0.5);
-    --boxShadowUp: 0px 1px rgba(0, 0, 0, 1);
+    --boxShadowUpBlack: 0px 1px rgba(0, 0, 0, 0.5);
+    --boxShadowUpWhite: 0px 1px rgba(255, 255, 255);
 }
 
 #container {
     border: 1px solid rgb(0, 0, 0);
     width: 35vw;
+    height: 100%;
     display: flex;
     gap: 1.5em;
 }
@@ -16,6 +18,9 @@
     padding-right: 1.5em;
     padding-left: 1.5em;
     box-shadow: var(--boxShadowRight);
+    background-color: #3B3B3D;
+    color: #FFFFFF;
+    padding-bottom: 1em;
 }
 
 #left-side-text {
@@ -24,13 +29,23 @@
     gap: 1.5em;
 }
 
-#info h2, #extraInfo h2, #education h2, #experience h2 {
+#left-side img {
+    margin: 0.5em 0em;
+}
+
+#info h2, #extraInfo h2 {
     margin-bottom: 0.7em;
-    box-shadow: var(--boxShadowUp);
+    padding-bottom: 0.1em;
+    box-shadow: var(--boxShadowUpWhite);
+}
+
+#education h2, #experience h2 {
+    box-shadow: var(--boxShadowUpBlack);
+    padding-bottom: 0.1em;
 }
 
 #skills h4, #languages h4 {
-    margin: 0.5em 0em;
+    margin: 1em 0em;
 }
 
 #info p {
@@ -39,7 +54,10 @@
 
 #right-side {
     display: flex;
+    flex-grow: 1;
+    padding-right: 1.5em;
     flex-direction: column;
+    padding-bottom: 1em;
 }
 
 #top-side {
@@ -52,4 +70,8 @@
 
 #education, #experience {
     padding-top: 2em;
+}
+
+#education div, #experience div {
+    padding-top: 1em;
 }

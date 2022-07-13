@@ -11,12 +11,12 @@ class App extends Component {
     this.state = {
       cv_data: {
         about: {
-          name: "Octavian",
-          surname: "Todor",
-          email: "octavian.todor04@gmail.com",
-          address: "Stefan cel Mare street.",
-          phone: "+40746203138",
-          description: "Great guy. Likes cock."
+          name: "OCTAVIAN",
+          surname: "TODOR",
+          email: "doggo.heckin@gmail.com",
+          address: "Lorem Ipsum Street No. 17",
+          phone: "+40737928741",
+          description: "Doggo ipsum  Floofs most angery pupper I have ever seen super chub aqua doggo most angery pupper I have ever seen big ol, borking doggo pats h*ck long doggo, shoober shoob ur givin me a spook most angery pupper I have ever seen. Smol wow very biscit boof aqua doggo bork puggo shoob, big ol you are doing me a frighten the neighborhood pupper you are doing me a frighten borking doggo. "
         },
         education: {
           inputs: [
@@ -27,8 +27,15 @@ class App extends Component {
           ],
           institutions: [
             {
-              name: "Universitatea din Bucuresti",
+              name: "Lorem Ipsum University",
               field: "Psychology",
+              start: "2019",
+              end: "2022",
+              id: uniqid()
+            },
+            {
+              name: "Lorem Ipsum University of Sciences",
+              field: "Networking",
               start: "2019",
               end: "2022",
               id: uniqid()
@@ -44,10 +51,17 @@ class App extends Component {
           ],
           institutions: [
             {
-              name: "Smecherescu",
+              name: "Lorem Ipsum company",
               position: "Junior Dev",
               start: "2022",
               end: "Present",
+              id: uniqid()
+            },
+            {
+              name: "Lorem Ipsum SRL",
+              position: "Networking Junior",
+              start: "2019",
+              end: "2022",
               id: uniqid()
             }
           ]
@@ -69,7 +83,7 @@ class App extends Component {
           { 
             cv_data: {...this.state.cv_data, 
               about: {...this.state.cv_data.about,
-                name: input.target.value
+                name: input.target.value.toUpperCase()
               }
             }
           }
@@ -79,7 +93,7 @@ class App extends Component {
         this.setState(
           { cv_data: {...this.state.cv_data, 
               about: {...this.state.cv_data.about,
-                surname: input.target.value
+                surname: input.target.value.toUpperCase()
               }
             }
           }
@@ -361,8 +375,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Inputs eduInputs={cv_data.education.inputs} jobInputs={cv_data.experience.inputs} addInputs={this.addInputs} removeInputs={this.removeInputs} handleChange={this.handleChange} />
-        <CV data={cv_data} />
+        <header style={{backgroundColor: "gray", color: "blue"}}>
+          <h2>Build-A-CV</h2>
+        </header>
+        <div id="middle-part">
+          <Inputs eduInputs={cv_data.education.inputs} jobInputs={cv_data.experience.inputs} addInputs={this.addInputs} removeInputs={this.removeInputs} handleChange={this.handleChange} />
+          <CV data={cv_data} />
+        </div>
+        <footer style={{backgroundColor: "black", color: "white", textAlign: "center"}}>
+          Made by ktavean. 2022
+        </footer>
       </div>
     );
   }

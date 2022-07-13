@@ -1,5 +1,11 @@
 .App {
     display: flex;
-    padding: 1em;
+    flex-direction: column;
+}
+
+#middle-part {
+    margin: 1em 0em;
+    flex-grow: 1;
+    display: flex;
     justify-content: space-around;
 }
