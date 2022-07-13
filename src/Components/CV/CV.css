@@ -1,0 +1,55 @@
+* {
+    --boxShadowRight: 1px 0px rgba(0, 0, 0, 0.5);
+    --boxShadowUp: 0px 1px rgba(0, 0, 0, 1);
+}
+
+#container {
+    border: 1px solid rgb(0, 0, 0);
+    width: 35vw;
+    display: flex;
+    gap: 1.5em;
+}
+
+#left-side {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    box-shadow: var(--boxShadowRight);
+}
+
+#left-side-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#info h2, #extraInfo h2, #education h2, #experience h2 {
+    margin-bottom: 0.7em;
+    box-shadow: var(--boxShadowUp);
+}
+
+#skills h4, #languages h4 {
+    margin: 0.5em 0em;
+}
+
+#info p {
+    margin-bottom: 0.4em;
+}
+
+#right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+#top-side {
+    padding-top: 2em;
+}
+
+#top-side p {
+    padding-top: 0.5em;
+}
+
+#education, #experience {
+    padding-top: 2em;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import uniqid from "uniqid";
+import "./Inputs.css";
 
 class Inputs extends Component {
     
@@ -16,11 +16,13 @@ class Inputs extends Component {
             <div key={item.id} className="edu">
                 <label key={item.id+1} htmlFor="eduName">Institution's name: </label>
                 <input key={item.id+2} id={`eduName${i}`} name="eduName" onChange={e => handleChange(e)} />
-                <label key={item.id+3} htmlFor="startDate">Start date: </label>
-                <input key={item.id+4} type="date" id={`startDate${i}`} name="startDate" onChange={e => handleChange(e)} />
-                <label key={item.id+5} htmlFor="graduationDate">Graduation date: </label>
-                <input key={item.id+6} type="date" id={`graduationDate${i}`} name="graduationDate" onChange={e => handleChange(e)} />
-                <button key={item.id+7} type="button" id={`delEdu${i}`} onClick={e => removeInputs(e)}>Remove education</button>
+                <label key={item.id+3} htmlFor="field">Field of study:</label>
+                <input key={item.id+4} id={`field${i}`} name="field" onChange={e => handleChange(e)} />
+                <label key={item.id+5} htmlFor="startDate">Start date: </label>
+                <input key={item.id+6} type="date" id={`startDate${i}`} name="startDate" onChange={e => handleChange(e)} />
+                <label key={item.id+7} htmlFor="graduationDate">Graduation date: </label>
+                <input key={item.id+8} type="date" id={`graduationDate${i}`} name="graduationDate" onChange={e => handleChange(e)} />
+                <button key={item.id+9} type="button" id={`delEdu${i}`} onClick={e => removeInputs(e)}>Remove education</button>
             </div>
             );
           });
@@ -41,42 +43,44 @@ class Inputs extends Component {
           });
 
         return (
-            <div id="inputs">
-          <div id="aboutInp">
-            <h3>About you</h3>
-            <label htmlFor="name">Name: </label>
-            <input id="name" name="name" onChange={e => handleChange(e)} />
-            <label htmlFor="surname">Surname: </label>
-            <input id="surname" name="surname" onChange={e => handleChange(e)} />
-            <label htmlFor="name">Email: </label>
-            <input id="email" name="email" onChange={e => handleChange(e)} />
-            <label htmlFor="address">Address: </label>
-            <input id="address" name="address" onChange={e => handleChange(e)} />
-            <label htmlFor="phone">Phone number: </label>
-            <input id="phone" name="phone" onChange={e => handleChange(e)} />
-            <label htmlFor="description">About you: </label>
-            <textarea id="description" name="description" rows="10" cols="80" onChange={e => handleChange(e)}/>
-          </div>
-          <div id="educationInp">
-            <h3>Education</h3>
-            {eduInputs}
-            <button type="button" id="addEdu" onClick={e => addInputs(e)}>Add education</button>
-          </div>
-          <div id="experienceInp">
-            <h3>Work experience</h3>
-            {jobInputs}
-            <button type="button" id="addExp" onClick={e => addInputs(e)}>Add experience</button>
-          </div>
-          <div id="extraInfoInp">
-            <div id="skillsInp">
-              <h3>Skills</h3>
-              <input type="text" id="skills" name="skills" onChange={e => handleChange(e)} />
+        <div id="inputs">
+          <fieldset>
+            <div id="aboutInp">
+              <h3>About you</h3>
+              <label htmlFor="name">Name: </label>
+              <input id="name" name="name" onChange={e => handleChange(e)} />
+              <label htmlFor="surname">Surname: </label>
+              <input id="surname" name="surname" onChange={e => handleChange(e)} />
+              <label htmlFor="name">Email: </label>
+              <input id="email" name="email" onChange={e => handleChange(e)} />
+              <label htmlFor="address">Address: </label>
+              <input id="address" name="address" onChange={e => handleChange(e)} />
+              <label htmlFor="phone">Phone number: </label>
+              <input id="phone" name="phone" onChange={e => handleChange(e)} />
+              <label htmlFor="description">About you: </label>
+              <textarea id="description" name="description" rows="10" cols="80" onChange={e => handleChange(e)}/>
             </div>
-            <div id="languagesInp">
-              <h3>Languages</h3>
-              <input type="text" id="languages" name="languages" onChange={e => handleChange(e)} />
+            <div id="educationInp">
+              <h3>Education</h3>
+              {eduInputs}
+              <button type="button" id="addEdu" onClick={e => addInputs(e)}>Add education</button>
             </div>
-          </div>
+            <div id="experienceInp">
+              <h3>Work experience</h3>
+              {jobInputs}
+              <button type="button" id="addExp" onClick={e => addInputs(e)}>Add experience</button>
+            </div>
+            <div id="extraInfoInp">
+              <div id="skillsInp">
+                <h3>Skills</h3>
+                <input type="text" id="skills" name="skills" onChange={e => handleChange(e)} />
+              </div>
+              <div id="languagesInp">
+                <h3>Languages</h3>
+                <input type="text" id="languages" name="languages" onChange={e => handleChange(e)} />
+              </div>
+            </div>
+          </fieldset>
         </div>
         );
     };

@@ -11,12 +11,12 @@ class App extends Component {
     this.state = {
       cv_data: {
         about: {
-          name: "",
-          surname: "",
-          email: "",
-          address: "",
-          phone: "",
-          description: ""
+          name: "Octavian",
+          surname: "Todor",
+          email: "octavian.todor04@gmail.com",
+          address: "Stefan cel Mare street.",
+          phone: "+40746203138",
+          description: "Great guy. Likes cock."
         },
         education: {
           inputs: [
@@ -27,9 +27,10 @@ class App extends Component {
           ],
           institutions: [
             {
-              name: "",
-              start: "",
-              end: "",
+              name: "Universitatea din Bucuresti",
+              field: "Psychology",
+              start: "2019",
+              end: "2022",
               id: uniqid()
             }
           ]
@@ -43,17 +44,17 @@ class App extends Component {
           ],
           institutions: [
             {
-              name: "",
-              position: "",
-              start: "",
-              end: "",
+              name: "Smecherescu",
+              position: "Junior Dev",
+              start: "2022",
+              end: "Present",
               id: uniqid()
             }
           ]
         },
         extraInfo: {
-            skills: [],
-            languages: []
+            skills: ["HTML, CSS, Javascript, React.JS"],
+            languages: ["Romanian, English"]
           }
       }
     };
@@ -156,6 +157,18 @@ class App extends Component {
 
     if (id.includes("eduName")) {
       newEduState[i].name = value;
+      this.setState(
+        {
+          cv_data: {...this.state.cv_data,
+            education: {
+              ...this.state.cv_data.education,
+              institutions: newEduState
+            }
+          }
+        }
+      )
+    } else if (id.includes("field")) {
+      newEduState[i].field = value;
       this.setState(
         {
           cv_data: {...this.state.cv_data,
