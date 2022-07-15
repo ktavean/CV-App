@@ -5,11 +5,12 @@
 }
 
 #container {
-    border: 1px solid rgb(0, 0, 0);
-    width: 35vw;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    width: 48em;
     height: 100%;
     display: flex;
     gap: 1.5em;
+    background-color: white;
 }
 
 #left-side {
@@ -31,6 +32,7 @@
 
 #left-side img {
     margin: 0.5em 0em;
+    border-radius: 200px;
 }
 
 #info h2, #extraInfo h2 {

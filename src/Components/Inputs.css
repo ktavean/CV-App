@@ -2,11 +2,14 @@
     --boxShadowUpBlack: 0px 1px rgba(0, 0, 0, 0.5);
 }
 
-fieldset {
+form {
     padding: 1em 2em;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
 
-input, textarea {
+textarea {
     width: 25em;
 }
 
@@ -20,9 +23,22 @@ textarea {
     resize: none;
 }
 
+input[type="date"] {
+    width: 8em;
+}
+
+.exp input[type="text"] {
+    width: 14em;
+}
+
 #inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp, .exp, .edu {
     display: flex;
     flex-direction: column;
+}
+
+.exp div, .edu div {
+    display: flex;
+    justify-content: space-between;
 }
 
 #aboutInp, #educationInp, #experienceInp, #extraInfoInp {

@@ -53,7 +53,7 @@ class CV extends Component {
                 </div>
                 <div id="right-side">
                     <div id="top-side">
-                        <h1>{`${data.about.name} ${data.about.surname}`}</h1>
+                        <h1>{`${data.about.firstName} ${data.about.lastName}`}</h1>
                         <p>{data.about.description}</p>
                     </div>
                     <div id="education">
